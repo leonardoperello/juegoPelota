@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bbgame</string>
+    <string name="app_name">Pelota Rebota</string>
     <string name="title_activity_dialog">Pause</string>
     <string name="title_activity_bbg_level2">bbgActivityLevel2</string>
 </resources>
