@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.shenkar.nik.pelotarebota.R;
+
 
 public class PelotaRebota extends Activity {
 
@@ -22,7 +24,7 @@ public class PelotaRebota extends Activity {
 
 
         mMediaPlayer = new MediaPlayer();
-        mMediaPlayer = MediaPlayer.create(this,R.raw.deadmau5_fall);
+        mMediaPlayer = MediaPlayer.create(this, R.raw.deadmau5_fall);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
