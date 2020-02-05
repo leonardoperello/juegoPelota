@@ -72,6 +72,9 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     // vidas
     int canttVida = 3;
 
+    //DUDAS
+    int ladrillo30p, ladrillo20p, ladrillo10p;
+
    //Constructor
     public LogicaPelotaRebota(Context context, int x, int y) {
 
@@ -132,15 +135,40 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
         int anchoLadrillo = pantallaCordX / 8;
         int altoLadrillo = pantallaCordY / 20;
-
+        int columna, fila;
         // Se contruye el muro de ladrillos
         numLadrillo = 0;
-        for (int columna = 0; columna < 8; columna++) {
-            for (int fila = 0; fila < 3; fila++) {
-                ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo);
-                numLadrillo++;
+
+        for (columna = 0; columna < 8; columna++) {
+            for (fila = 0; fila < 3; fila++) {
+                if (columna%2 ==0) {
+                    ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo);
+                    numLadrillo++;
+                    ladrillo30p++;
+                }
             }
         }
+
+        for (columna=0; columna < 8; columna++) {
+            for (fila=3; fila < 6; fila++) {
+                if (columna%2 != 0) {
+                    ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo);
+                    numLadrillo++;
+                    ladrillo20p++;
+                }
+            }
+        }
+
+        for (columna=0; columna < 8; columna++) {
+            for (fila=6; fila < 8; fila++) {
+                if (columna%3 != 0) {
+                    ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo);
+                    numLadrillo++;
+                    ladrillo10p++;
+                }
+            }
+        }
+
         // si se pierde todas las vidas el puntaje y la cantidad de vida se reinicia
         if (canttVida == 0) {
             puntaje = 0;
@@ -264,11 +292,39 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             pincel.setColor(Color.argb(255, 24, 200, 75));
 
             // dibujamos los ladrillos visibles
-            for (int i = 0; i < numLadrillo; i++) {
+            int i=0,j=0,k=0;
+            while(i < ladrillo30p){
+                if (ladrillos[i].getVisible()) {
+                    superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
+                }
+                i++;
+            }
+
+            while(j < ladrillo20p){
+                if (ladrillos[i].getVisible()) {
+                    pincel.setColor(Color.argb(255, 223, 239, 35));
+                    superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
+                }
+                i++;
+                j++;
+            }
+
+            while(k < ladrillo10p){
+                if (ladrillos[i].getVisible()) {
+                    pincel.setColor(Color.argb(255, 239, 38, 35));
+                    superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
+                }
+                i++;
+                k++;
+            }
+
+          /*  for (int i = 0; i < numLadrillo; i++) {
                 if (ladrillos[i].getVisible()) {
                     superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
                 }
             }
+
+           */
 
             // cambiamos el color del pincel
             pincel.setColor(Color.argb(255, 255, 255, 255));
