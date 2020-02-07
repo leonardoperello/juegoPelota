@@ -7,8 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.shenkar.nik.pelotarebota.R;
+import com.shenkar.nik.bbgame.R;
 
 public class MainActivity_Menu extends AppCompatActivity implements View.OnClickListener {
 

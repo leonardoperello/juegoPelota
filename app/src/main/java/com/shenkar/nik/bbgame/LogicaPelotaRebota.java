@@ -72,6 +72,8 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     // vidas
     int canttVida = 3;
 
+    TiempoVelPelota velPelota;
+
    //Constructor
     public LogicaPelotaRebota(Context context, int x, int y) {
 
@@ -89,8 +91,13 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         paleta = new Paleta(pantallaCordX, pantallaCordY);
 
         // Creacion de la pelota
-        pelota = new Pelota();
-
+        int r = (int) (Math.random()*2)+1;
+        if(r==1){
+            pelota = new Pelota(400);
+        }else{
+            pelota = new Pelota(-400);
+        }
+        velPelota = new TiempoVelPelota(10000, 1000, pelota);
         // cargar sonidos del juego
         piletaSonido = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
@@ -121,7 +128,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             Log.e("error", "failed to load sound files");
         }
 
-       crearLadrilloYReiniciar();
+        crearLadrilloYReiniciar();
 
     }
 
@@ -129,7 +136,6 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
         //coloca la pelota en el centro
         pelota.reiniciar(pantallaCordX, pantallaCordY);
-
         int anchoLadrillo = pantallaCordX / 8;
         int altoLadrillo = pantallaCordY / 20;
         int columna, fila;
@@ -168,6 +174,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
     @Override
     public void run() {
+        velPelota.start();
         while (estaJugando) {
             // La variable startFrameTime guarda la hora actual en milisegundos
             long inicioTiempodePantalla = System.currentTimeMillis();
@@ -182,19 +189,21 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             if (tiempoPantallaCelular >= 1) {
                 fps = 1000 / tiempoPantallaCelular;
             }
-
         }
-
     }
 
     //en este metodo se encuentra lo que necesita ser actualizado, ya sea
     //movimiento, deteccion de colicion etc.
 
     public void actualizar() {
-
         // actualiza los movimientos de la pelota y la paleta
         paleta.actualizar(fps);
-        pelota.actualizar(fps);
+       /* if(puntaje > 20 && puntaje < 40) {
+            pelota.setVelocidadXY(450, -250);
+        }
+
+        */
+            pelota.actualizar(fps);
 
         // Comprueba si la pelota choca con un ladrillo
         for (int i = 0; i < numLadrillo; i++) {

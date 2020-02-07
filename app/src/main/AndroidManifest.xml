@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shenkar.nik.pelotarebota">
+    package="com.shenkar.nik.bbgame">
 
     <application
         android:allowBackup="true"
@@ -9,14 +9,15 @@
         android:roundIcon="@drawable/pelota2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".PelotaRebota"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".MainActivity_Menu"
             android:screenOrientation="portrait">
@@ -29,10 +30,12 @@
         <activity
             android:name=".FinalLevel1"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.level1"></activity>
-        <activity android:name=".GameOver"
+            android:theme="@style/AppTheme.level1" />
+        <activity
+            android:name=".GameOver"
             android:screenOrientation="landscape">
-            ></activity>
+            >
+        </activity>
     </application>
 
 </manifest>

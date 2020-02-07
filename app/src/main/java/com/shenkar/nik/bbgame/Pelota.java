@@ -12,10 +12,10 @@ public class Pelota {
     private float altoPelota = 10;
 
     //Constructor
-    Pelota(){
+    Pelota(float x){
         //La pelota comienza viajando a 100 píxeles por segundo
-        xVlo = 200;
-        yVlo = -400;
+        xVlo = x;
+        yVlo = -200;
         //La pelota es colocada en el centro de la pantalla en la parte inferior
         //La pelota es de dimenciones 10x10 pixeles
         rect = new RectF();
@@ -24,6 +24,13 @@ public class Pelota {
     RectF getRect(){
         return rect;
     }
+
+
+    void setVelocidadXY(float x, float y){
+        xVlo = x;
+        yVlo = y;
+    }
+
 
     void actualizar(long fps){
         rect.left = rect.left + (xVlo  / fps);
