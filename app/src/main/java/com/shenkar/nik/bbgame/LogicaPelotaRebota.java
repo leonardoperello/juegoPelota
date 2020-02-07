@@ -328,7 +328,8 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             superficieDibujar.drawRect(paleta.getRect(), pincel);
 
             // dibujar la pelota
-            superficieDibujar.drawRect(pelota.getRect(), pincel);
+            superficieDibujar.drawOval(pelota.getRect(),pincel);
+           // superficieDibujar.drawRect(pelota.getRect(), pincel);
 
             // dibujamos los ladrillos visibles
             for (int i = 0; i < numLadrillo; i++) {

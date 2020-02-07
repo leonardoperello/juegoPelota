@@ -8,8 +8,8 @@ public class Pelota {
     private RectF rect;
     private float xVlo;
     private float yVlo;
-    private float anchoPelota = 10;
-    private float altoPelota = 10;
+    private float anchoPelota = 15;
+    private float altoPelota = 15;
 
     //Constructor
     Pelota(float x){
