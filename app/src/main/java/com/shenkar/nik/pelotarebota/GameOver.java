@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class GameOver extends Activity  {
+
+public class GameOver extends Activity {
 
     private Button startAgain;
 
@@ -19,8 +20,8 @@ public class GameOver extends Activity  {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        startAgain = (Button)findViewById(R.id.play);
+/*
+        startAgain = (Button) findViewById(R.id.play);
 
         startAgain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +30,7 @@ public class GameOver extends Activity  {
                 Intent intent = new Intent(GameOver.this, PelotaRebota.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
 }

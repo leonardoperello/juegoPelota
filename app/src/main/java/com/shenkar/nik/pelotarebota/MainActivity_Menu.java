@@ -1,4 +1,4 @@
-package com.shenkar.nik.bbgame;
+package com.shenkar.nik.pelotarebota;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
+
+
 
 public class MainActivity_Menu extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,25 +22,39 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mMediaPlayer = new MediaPlayer();
-        mMediaPlayer = MediaPlayer.create(this,R.raw.deadmau5_ft_rob_swire_ghosts_n_stuff);
+        mMediaPlayer = MediaPlayer.create(this, R.raw.deadmau5_ft_rob_swire_ghosts_n_stuff);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
 
-        Button soundButton =  findViewById(R.id.sound);
+
         Button playButton =   findViewById(R.id.play);
 
         playButton.setOnClickListener(this);
-        soundButton.setOnClickListener(this);
+
+        // boton de sonido
+        Button soundButton = (Button) this.findViewById(R.id.sound);
+        soundButton.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                if (mMediaPlayer.isPlaying()){
+                    mMediaPlayer.pause();
+                }else{
+                    mMediaPlayer.start();
+                }
+            }});
+
     }
-    @Override
+
+
     public void onClick(View v){
         switch (v.getId()){
+            //va de la activity de inicio a la activity de empezar a jugar
             case R.id.play:
                 Intent intent = new Intent(this, PelotaRebota.class);
                 startActivity(intent);
                 mMediaPlayer.stop();
                 break;
+
            /*
             case R.id.sound:
                 Intent intent2 = new Intent(this,soundActivity.class);
