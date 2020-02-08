@@ -97,7 +97,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         }else{
             pelota = new Pelota(-400);
         }
-        velPelota = new TiempoVelPelota(10000, 1000, pelota);
+        velPelota = new TiempoVelPelota(100000, 10000, pelota,pantallaCordY);
         // cargar sonidos del juego
         piletaSonido = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
@@ -178,6 +178,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         while (estaJugando) {
             // La variable startFrameTime guarda la hora actual en milisegundos
             long inicioTiempodePantalla = System.currentTimeMillis();
+            float primerV = pelota.getRect().top;
             // actualizar pantalla
             if (!pausa) {
                 actualizar();
@@ -186,6 +187,9 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             dibujar();
             //calcular los fps de la pantalla
             tiempoPantallaCelular = System.currentTimeMillis() - inicioTiempodePantalla;
+            float segundoV = pelota.getRect().top;
+            float total = segundoV - primerV;
+            velPelota.valorY(total);
             if (tiempoPantallaCelular >= 1) {
                 fps = 1000 / tiempoPantallaCelular;
             }
@@ -198,11 +202,6 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     public void actualizar() {
         // actualiza los movimientos de la pelota y la paleta
         paleta.actualizar(fps);
-       /* if(puntaje > 20 && puntaje < 40) {
-            pelota.setVelocidadXY(450, -250);
-        }
-
-        */
             pelota.actualizar(fps);
 
         // Comprueba si la pelota choca con un ladrillo

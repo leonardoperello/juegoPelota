@@ -7,7 +7,7 @@ import java.util.Random;
 public class Pelota {
     private RectF rect;
     private float xVlo;
-    private float yVlo;
+   volatile private float yVlo;
     private float anchoPelota = 15;
     private float altoPelota = 15;
 
@@ -26,8 +26,12 @@ public class Pelota {
     }
 
 
-    void setVelocidadXY(float x, float y){
-        xVlo = x;
+    float getyVlo(){
+        return yVlo;
+    }
+
+    void setVelocidadXY(float y){
+        //xVlo = x;
         yVlo = y;
     }
 
