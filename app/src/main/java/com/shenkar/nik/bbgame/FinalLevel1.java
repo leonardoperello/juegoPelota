@@ -1,6 +1,7 @@
 package com.shenkar.nik.bbgame;
-/*
+
 import android.content.Intent;
+import android.icu.util.Measure;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-public class FinalLevel1 extends AppCompatActivity   {
+public class FinalLevel1 extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +23,16 @@ public class FinalLevel1 extends AppCompatActivity   {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         RelativeLayout rlayout = findViewById(R.id.level1finish);
-        rlayout.setOnClickListener((View.OnClickListener) this);
+        rlayout.setOnClickListener(this);
 
     }
 
-  /*  @Override
+    @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, bbgActivityLevel2.class);
+        Intent intent = new Intent(this, MainActivity_Menu.class);
         startActivity(intent);
     }
-   */
+}
+
 
 

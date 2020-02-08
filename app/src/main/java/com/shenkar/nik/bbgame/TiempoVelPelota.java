@@ -1,18 +1,20 @@
 package com.shenkar.nik.bbgame;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 
 
 public class TiempoVelPelota extends CountDownTimer {
 
     private Pelota pelota;
-    private int pantallaY;
+    private Context context;
+
     private float velY;
-    public TiempoVelPelota(long tiempoTotal, long tiempoIntervalo, Pelota p, int pY){
+    TiempoVelPelota(Context c, long tiempoTotal, long tiempoIntervalo, Pelota p){
         super(tiempoTotal,tiempoIntervalo);
         pelota=p;
-        pantallaY = pY/2;
-
+        context = c;
     }
 
     void valorY(float vy){
@@ -22,9 +24,9 @@ public class TiempoVelPelota extends CountDownTimer {
     @Override
     public void onTick(long tiempoIntervalo) {
         if(velY<0){
-            pelota.setVelocidadXY(pelota.getyVlo()-200);
+            pelota.setVelocidadXY(pelota.getyVlo()-150);
         }else{
-            pelota.setVelocidadXY(pelota.getyVlo()+200);
+            pelota.setVelocidadXY(pelota.getyVlo()+150);
 
         }
 
@@ -32,12 +34,9 @@ public class TiempoVelPelota extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        if(velY<0){
-            pelota.setVelocidadXY(pelota.getyVlo()-600);
-        }else{
-            pelota.setVelocidadXY(pelota.getyVlo()+600);
-        }
-
+        Intent intent = new Intent(context,FinalLevel1.class);
+        context.startActivity(intent);
+        this.cancel();
     }
 
 

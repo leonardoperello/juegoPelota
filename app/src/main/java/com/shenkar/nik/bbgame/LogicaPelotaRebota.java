@@ -1,7 +1,9 @@
 package com.shenkar.nik.bbgame;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
@@ -74,11 +76,13 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
     TiempoVelPelota velPelota;
 
+    Context mContext;
+
    //Constructor
     public LogicaPelotaRebota(Context context, int x, int y) {
 
         super(context);
-
+        mContext = context;
         // Se inicializa los objetos vistaHiloJuego y pincel
         vistaHiloJuego = getHolder();
         pincel = new Paint();
@@ -97,7 +101,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         }else{
             pelota = new Pelota(-400);
         }
-        velPelota = new TiempoVelPelota(100000, 10000, pelota,pantallaCordY);
+        velPelota = new TiempoVelPelota(mContext,10000, 2000, pelota);
         // cargar sonidos del juego
         piletaSonido = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
@@ -117,7 +121,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             descriptor = assetManager.openFd("beep3.ogg");
             sonido3ID = piletaSonido.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("explocionpelota.mp3");
+            descriptor = assetManager.openFd("explocionpelota.ogg");
             vidaPerdidaID = piletaSonido.load(descriptor, 0);
 
             descriptor = assetManager.openFd("explode.ogg");
@@ -172,29 +176,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
     }
 
-    @Override
-    public void run() {
-        velPelota.start();
-        while (estaJugando) {
-            // La variable startFrameTime guarda la hora actual en milisegundos
-            long inicioTiempodePantalla = System.currentTimeMillis();
-            float primerV = pelota.getRect().top;
-            // actualizar pantalla
-            if (!pausa) {
-                actualizar();
-            }
-            // Dibujar en la pantalla
-            dibujar();
-            //calcular los fps de la pantalla
-            tiempoPantallaCelular = System.currentTimeMillis() - inicioTiempodePantalla;
-            float segundoV = pelota.getRect().top;
-            float total = segundoV - primerV;
-            velPelota.valorY(total);
-            if (tiempoPantallaCelular >= 1) {
-                fps = 1000 / tiempoPantallaCelular;
-            }
-        }
-    }
+
 
     //en este metodo se encuentra lo que necesita ser actualizado, ya sea
     //movimiento, deteccion de colicion etc.
@@ -275,7 +257,10 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             paleta.reiniciar(pantallaCordX, pantallaCordY);
             if (canttVida == 0) {
                 pausa = true;
+                Intent intent = new Intent(mContext, GameOver.class);
+                mContext.startActivity(intent);
                 crearLadrilloYReiniciar();
+                ((Activity)mContext).finish();
             }
 
 
@@ -395,6 +380,34 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         hiloJuego = new Thread(this);
         hiloJuego.start();
     }
+
+
+
+    @Override
+    public void run() {
+        velPelota.start();
+        while (estaJugando) {
+            // La variable startFrameTime guarda la hora actual en milisegundos
+            long inicioTiempodePantalla = System.currentTimeMillis();
+            float primerV = pelota.getRect().top;
+            // actualizar pantalla
+            if (!pausa) {
+                actualizar();
+            }
+            // Dibujar en la pantalla
+            dibujar();
+            //calcular los fps de la pantalla
+            tiempoPantallaCelular = System.currentTimeMillis() - inicioTiempodePantalla;
+            float segundoV = pelota.getRect().top;
+            float total = segundoV - primerV;
+            velPelota.valorY(total);
+            if (tiempoPantallaCelular >= 1) {
+                fps = 1000 / tiempoPantallaCelular;
+            }
+        }
+    }
+
+
 
     // The SurfaceView class implements onTouchListener
     // So we can override this method and detect screen touches.

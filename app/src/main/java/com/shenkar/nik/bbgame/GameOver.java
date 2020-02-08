@@ -1,5 +1,5 @@
 package com.shenkar.nik.bbgame;
-/*
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ public class GameOver extends AppCompatActivity implements View.OnClickListener 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.gameover);
+        RelativeLayout rlayout =  findViewById(R.id.gameover);
         rlayout.setOnClickListener(this);
 
     }
@@ -36,4 +36,4 @@ public class GameOver extends AppCompatActivity implements View.OnClickListener 
 
 
 }
- */
+
