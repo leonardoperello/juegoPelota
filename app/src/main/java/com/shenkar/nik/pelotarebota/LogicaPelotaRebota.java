@@ -23,6 +23,11 @@ import java.io.IOException;
 @SuppressLint("ViewConstructor")
 public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
+    //puntajes
+     private static final int PUNTAJEROJO = 10;
+    private static final int PUNTAJEAMARILLO = 20;
+    private static final int PUNTAJEVERDE = 30;
+
     // Este es el hilo del juego
     Thread hiloJuego = null;
 
@@ -72,13 +77,13 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     int puntaje = 0;
 
     // vidas
-    int canttVida = 3;
+    int canttVida = 1;
 
     TiempoVelPelota velPelota;
 
     Context mContext;
 
-   //Constructor
+    //Constructor
     public LogicaPelotaRebota(Context context, int x, int y) {
 
         super(context);
@@ -95,13 +100,13 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         paleta = new Paleta(pantallaCordX, pantallaCordY);
 
         // Creacion de la pelota
-        int r = (int) (Math.random()*2)+1;
-        if(r==1){
+        int r = (int) (Math.random() * 2) + 1;
+        if (r == 1) {
             pelota = new Pelota(400);
-        }else{
+        } else {
             pelota = new Pelota(-400);
         }
-        velPelota = new TiempoVelPelota(mContext,1000000, 2000, pelota);
+        velPelota = new TiempoVelPelota(mContext, 1000000, 2000, pelota);
         // cargar sonidos del juego
         piletaSonido = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
@@ -149,15 +154,15 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         for (columna = 0; columna < 8; columna++) {
             for (fila = 0; fila < 8; fila++) {
                 if (fila < 3) {
-                    ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo,'v',2);
+                    ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo, 'v', 2);
                     numLadrillo++;
-                }else{
-                    if(fila < 6 && columna % 2 == 0){
-                        ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo,'a',1);
+                } else {
+                    if (fila < 6 && columna % 2 == 0) {
+                        ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo, 'a', 1);
                         numLadrillo++;
-                    }else{
-                        if(fila > 5 && columna % 3 != 0) {
-                            ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo, 'r',0);
+                    } else {
+                        if (fila > 5 && columna % 3 != 0) {
+                            ladrillos[numLadrillo] = new Ladrillo(fila, columna, anchoLadrillo, altoLadrillo, 'r', 0);
                             numLadrillo++;
                         }
                     }
@@ -177,70 +182,73 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     }
 
 
-
     //en este metodo se encuentra lo que necesita ser actualizado, ya sea
     //movimiento, deteccion de colicion etc.
 
     public void actualizar() {
         // actualiza los movimientos de la pelota y la paleta
         paleta.actualizar(fps);
-            pelota.actualizar(fps);
+        pelota.actualizar(fps);
 
         // Comprueba si la pelota choca con un ladrillo
         for (int i = 0; i < numLadrillo; i++) {
 
-           if(ladrillos[i].getColorLadrillo()=='v'){
-               if (ladrillos[i].getVisible()) {
-                   if (RectF.intersects(ladrillos[i].getRect(), pelota.getRect())) {
-                       if (ladrillos[i].getGolpe() == 0) {
-                           ladrillos[i].setVisible();
-                           pelota.contrarioY();
-                           puntaje = puntaje + 10;
-                           piletaSonido.play(explocionID, 1, 1, 0, 0, 1);
-                       }else{
-                           ladrillos[i].restarGolpe();
-                           pelota.contrarioY();
-                       }
-                   }
+            if (ladrillos[i].getColorLadrillo() == 'v') {
+                if (ladrillos[i].getVisible()) {
+                    if (RectF.intersects(ladrillos[i].getRect(), pelota.getRect())) {
+                        if (ladrillos[i].getGolpe() == 0) {
+                            ladrillos[i].setVisible();
+                            pelota.contrarioY();
+                            puntaje = puntaje + PUNTAJEVERDE;
+                            piletaSonido.play(explocionID, 1, 1, 0, 0, 1);
+                        } else {
+                            ladrillos[i].restarGolpe();
+                            pelota.contrarioY();
+                        }
+                    }
 
-               }
-           }else{
-               if(ladrillos[i].getColorLadrillo()=='a'){
-                   if (ladrillos[i].getVisible()) {
-                       if (RectF.intersects(ladrillos[i].getRect(), pelota.getRect())) {
-                           if (ladrillos[i].getGolpe() == 0) {
-                               ladrillos[i].setVisible();
-                               pelota.contrarioY();
-                               puntaje = puntaje + 10;
-                               piletaSonido.play(explocionID, 1, 1, 0, 0, 1);
-                           }else{
-                               ladrillos[i].restarGolpe();
-                               pelota.contrarioY();
-                           }
-                       }
+                }
+            } else {
+                if (ladrillos[i].getColorLadrillo() == 'a') {
+                    if (ladrillos[i].getVisible()) {
+                        if (RectF.intersects(ladrillos[i].getRect(), pelota.getRect())) {
+                            if (ladrillos[i].getGolpe() == 0) {
+                                ladrillos[i].setVisible();
+                                pelota.contrarioY();
+                                puntaje = puntaje + PUNTAJEAMARILLO;
+                                piletaSonido.play(explocionID, 1, 1, 0, 0, 1);
+                            } else {
+                                ladrillos[i].restarGolpe();
+                                pelota.contrarioY();
+                            }
+                        }
 
-                   }
-               }else{
-                       if (ladrillos[i].getVisible()) {
-                           if (RectF.intersects(ladrillos[i].getRect(), pelota.getRect())) {
+                    }
+                } else {
+                    if (ladrillos[i].getVisible()) {
+                        if (RectF.intersects(ladrillos[i].getRect(), pelota.getRect())) {
 
-                                   ladrillos[i].setVisible();
-                                   pelota.contrarioY();
-                                   puntaje = puntaje + 10;
-                                   piletaSonido.play(explocionID, 1, 1, 0, 0, 1);
+                            ladrillos[i].setVisible();
+                            pelota.contrarioY();
+                            puntaje = puntaje + PUNTAJEROJO;
+                            piletaSonido.play(explocionID, 1, 1, 0, 0, 1);
 
-                           }
+                        }
 
-                       }
-               }
-           }
-
-
-
+                    }
+                }
+            }
+            if(puntaje == 80) {
+                pausa = true;
+                Intent intent = new Intent(mContext, FinalLevel1.class);
+                mContext.startActivity(intent);
+                ((Activity) mContext).finish();
+            }
         }
+
         // comprueba si la pelota choca con la paleta
         if (RectF.intersects(paleta.getRect(), pelota.getRect())) {
-           // pelota.setRandomX();
+            // pelota.setRandomX();
             pelota.contrarioY();
             pelota.actualizarY(paleta.getRect().top - 2);
             piletaSonido.play(sonido1ID, 1, 1, 0, 0, 1);
@@ -260,9 +268,8 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
                 Intent intent = new Intent(mContext, GameOver.class);
                 mContext.startActivity(intent);
                 crearLadrilloYReiniciar();
-                ((Activity)mContext).finish();
+                ((Activity) mContext).finish();
             }
-
 
         }
 
@@ -286,6 +293,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             pelota.actualizarX(pantallaCordX - 22);
             piletaSonido.play(sonido3ID, 1, 1, 0, 0, 1);
         }
+
 
         // Se pausa el juego al llegar al puntaje establecido
         if (puntaje == numLadrillo * 10) {
@@ -312,22 +320,22 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             superficieDibujar.drawRect(paleta.getRect(), pincel);
 
             // dibujar la pelota
-            superficieDibujar.drawOval(pelota.getRect(),pincel);
-           // superficieDibujar.drawRect(pelota.getRect(), pincel);
+            superficieDibujar.drawOval(pelota.getRect(), pincel);
+            // superficieDibujar.drawRect(pelota.getRect(), pincel);
 
             // dibujamos los ladrillos visibles
             for (int i = 0; i < numLadrillo; i++) {
                 if (ladrillos[i].getVisible()) {
-                    if(ladrillos[i].getColorLadrillo() == 'v'){
+                    if (ladrillos[i].getColorLadrillo() == 'v') {
                         // cambiamos el color del pincel
                         pincel.setColor(Color.argb(255, 24, 200, 75));
                         superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
-                    }else{
-                        if(ladrillos[i].getColorLadrillo() == 'a'){
+                    } else {
+                        if (ladrillos[i].getColorLadrillo() == 'a') {
                             // cambiamos el color del pincel
                             pincel.setColor(Color.argb(255, 235, 249, 20));
                             superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
-                        }else{
+                        } else {
                             // cambiamos el color del pincel
                             pincel.setColor(Color.argb(255, 239, 38, 35));
                             superficieDibujar.drawRect(ladrillos[i].getRect(), pincel);
@@ -335,7 +343,6 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
                     }
                 }
             }
-
 
 
             // cambiamos el color del pincel
@@ -382,7 +389,6 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     }
 
 
-
     @Override
     public void run() {
         velPelota.start();
@@ -408,7 +414,6 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     }
 
 
-
     // The SurfaceView class implements onTouchListener
     // So we can override this method and detect screen touches.
     @Override
@@ -420,7 +425,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
                 if (motionEvent.getX() > pantallaCordX / 2) {
                     paleta.setMovmentState(paleta.DERECHA);
                 } else {
-                        paleta.setMovmentState(paleta.IZQUIERDA);
+                    paleta.setMovmentState(paleta.IZQUIERDA);
                 }
                 break;
 
@@ -432,7 +437,4 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
 
         return true;
     }
-
 }
-
-
