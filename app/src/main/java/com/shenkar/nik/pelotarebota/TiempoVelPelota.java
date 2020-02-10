@@ -10,24 +10,31 @@ public class TiempoVelPelota extends CountDownTimer {
     private Pelota pelota;
     private Context context;
 
-    private float velY;
+    private float dirY;
+    private float dirX;
     TiempoVelPelota(Context c, long tiempoTotal, long tiempoIntervalo, Pelota p){
         super(tiempoTotal,tiempoIntervalo);
         pelota=p;
         context = c;
     }
 
-    void valorY(float vy){
-        velY = vy;
+    void valorYX(float dY, float dX){
+        dirY = dY;
+        dirX = dX;
     }
 
     @Override
     public void onTick(long tiempoIntervalo) {
-        if(velY<0){
+        if(dirY <0){
             pelota.setVelocidadXY(pelota.getyVlo()-150);
         }else{
             pelota.setVelocidadXY(pelota.getyVlo()+150);
+        }
 
+        if(dirX <0){
+            pelota.setVelocidadXY(pelota.getyVlo()-150);
+        }else{
+            pelota.setVelocidadXY(pelota.getyVlo()+150);
         }
 
     }

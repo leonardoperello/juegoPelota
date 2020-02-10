@@ -117,7 +117,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             AssetFileDescriptor descriptor;
 
             // Caega nuestros sonidos listos para usar
-            descriptor = assetManager.openFd("paletapelota.mp3");
+            descriptor = assetManager.openFd("beep1.mp3");
             sonido1ID = piletaSonido.load(descriptor, 0);
 
             descriptor = assetManager.openFd("beep2.ogg");
@@ -126,7 +126,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             descriptor = assetManager.openFd("beep3.ogg");
             sonido3ID = piletaSonido.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("explocionpelota.ogg");
+            descriptor = assetManager.openFd("loseLife.ogg");
             vidaPerdidaID = piletaSonido.load(descriptor, 0);
 
             descriptor = assetManager.openFd("explode.ogg");
@@ -392,10 +392,12 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     @Override
     public void run() {
         velPelota.start();
+        float dirYInicial, dirXInicial;
         while (estaJugando) {
             // La variable startFrameTime guarda la hora actual en milisegundos
             long inicioTiempodePantalla = System.currentTimeMillis();
-            float primerV = pelota.getRect().top;
+            dirYInicial = pelota.getRect().top;
+            dirXInicial = pelota.getRect().left;
             // actualizar pantalla
             if (!pausa) {
                 actualizar();
@@ -404,9 +406,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             dibujar();
             //calcular los fps de la pantalla
             tiempoPantallaCelular = System.currentTimeMillis() - inicioTiempodePantalla;
-            float segundoV = pelota.getRect().top;
-            float total = segundoV - primerV;
-            velPelota.valorY(total);
+            velPelota.valorYX(pelota.getRect().top - dirYInicial, pelota.getRect().left - dirXInicial);
             if (tiempoPantallaCelular >= 1) {
                 fps = 1000 / tiempoPantallaCelular;
             }
