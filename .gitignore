@@ -1,0 +1,16 @@
+
+local\.properties
+
+\.idea/libraries/Gradle__android_arch_core_runtime_1_1_0_aar\.xml
+
+*.properties
+
+*.bin
+
+*.lock
+
+*.ser
+
+\.idea/libraries/
+
+\.idea/workspace\.xml
