@@ -1,4 +1,4 @@
-package com.shenkar.nik.bbgame;
+package com.shenkar.nik.pelotarebota;
 
 import org.junit.Test;
 

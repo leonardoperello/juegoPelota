@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
     android:id="@+id/level1finish"
-    tools:context=".FinalLevel1">
+    tools:context=".FinalLevel">
 
 
     <pl.droidsonroids.gif.GifTextView

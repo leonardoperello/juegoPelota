@@ -10,12 +10,12 @@ import android.widget.RelativeLayout;
 
 import com.shenkar.nik.pelotarebota.R;
 
-public class FinalLevel1 extends AppCompatActivity implements View.OnClickListener {
+public class FinalLevel extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_final_level1);
+        setContentView(R.layout.activity_final_level);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

@@ -41,7 +41,7 @@ public class TiempoVelPelota extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        Intent intent = new Intent(context,FinalLevel1.class);
+        Intent intent = new Intent(context, FinalLevel.class);
         context.startActivity(intent);
         this.cancel();
     }

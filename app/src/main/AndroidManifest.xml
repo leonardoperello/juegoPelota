@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shenkar.nik.bbgame">
+    package="com.shenkar.nik.pelotarebota">
 
     <application
         android:allowBackup="true"
@@ -28,13 +28,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FinalLevel1"
-            android:screenOrientation="landscape"
+            android:name=".FinalLevel"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.level1" />
         <activity
             android:name=".GameOver"
-            android:screenOrientation="landscape">
-            >
+            android:screenOrientation="portrait">
+
         </activity>
     </application>
 

@@ -39,7 +39,7 @@ public class Paleta {
         topeDerecho = pantallaX;
 
         // velocidad de la paleta en pixel
-        velocidadPaleta = 450;
+        velocidadPaleta = 550;
 
     }
 
