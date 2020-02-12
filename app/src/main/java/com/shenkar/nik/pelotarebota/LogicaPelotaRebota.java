@@ -77,7 +77,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     int puntaje = 0;
 
     // vidas
-    int canttVida = 1;
+    int canttVida = 3;
 
     TiempoVelPelota velPelota;
 
@@ -102,11 +102,11 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         // Creacion de la pelota
         int r = (int) (Math.random() * 2) + 1;
         if (r == 1) {
-            pelota = new Pelota(300);
+            pelota = new Pelota(200);
         } else {
-            pelota = new Pelota(-300);
+            pelota = new Pelota(-200);
         }
-        velPelota = new TiempoVelPelota(mContext, 1000000, 2000, pelota);
+        velPelota = new TiempoVelPelota(mContext, 1000000, 3000, pelota);
         // cargar sonidos del juego
         piletaSonido = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
@@ -232,7 +232,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
                     }
                 }
             }
-            if(puntaje == 10) {
+            if(puntaje == 300) {
                 pausa = true;
                 Intent intent = new Intent(mContext, JuegoTerminado.class);
                 mContext.startActivity(intent);

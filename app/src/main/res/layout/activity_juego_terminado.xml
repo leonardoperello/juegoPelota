@@ -23,7 +23,7 @@
         android:text="Ganaste!!!"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="70dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         android:text="Felicitaciones"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="60dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
         android:text="Volver al menú"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
