@@ -21,24 +21,18 @@ public class GameOver extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
-        botonPlay = (Button) findViewById(R.id.play);
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
+        botonPlay = (Button) findViewById(R.id.playagain);
 
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GameOver.this, PelotaRebota.class);
+                Intent intent = new Intent(GameOver.this, MainActivity_Menu.class);
                 startActivity(intent);
             }
         });
     }
-
-
-}
+    }
 

@@ -19,8 +19,8 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toEndOf="@+id/play"
-        app:layout_constraintTop_toTopOf="@+id/play" />
+        app:layout_constraintStart_toEndOf="@+id/playagain"
+        app:layout_constraintTop_toTopOf="@+id/playagain" />
 
     <TextView
         android:id="@+id/textView"
@@ -31,11 +31,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/yatra_one"
-        android:text="BrickBreakGame"
+        android:text="Pelota Rebota"
         android:textAlignment="center"
         android:textColor="#980000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/play"
+        app:layout_constraintBottom_toTopOf="@+id/playagain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
         app:srcCompat="@drawable/ic_logo" />
 
     <Button
-        android:id="@+id/play"
+        android:id="@+id/playagain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

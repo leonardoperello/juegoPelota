@@ -6,32 +6,32 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.shenkar.nik.pelotarebota.R;
+public class JuegoTerminado extends AppCompatActivity  {
 
-public class FinalLevel extends AppCompatActivity implements View.OnClickListener {
+    private Button botonPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_final_level);
+        setContentView(R.layout.activity_juego_terminado);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        RelativeLayout rlayout = findViewById(R.id.level1finish);
-        rlayout.setOnClickListener(this);
+        botonPlay = (Button) findViewById(R.id.playagain);
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(this, MainActivity_Menu.class);
-        startActivity(intent);
+        botonPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JuegoTerminado.this, MainActivity_Menu.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

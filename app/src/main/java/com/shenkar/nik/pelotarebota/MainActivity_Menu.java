@@ -7,8 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-
-import com.shenkar.nik.pelotarebota.R;
+import android.widget.Toast;
 
 
 public class MainActivity_Menu extends AppCompatActivity implements View.OnClickListener {
@@ -26,8 +25,9 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.start();
 
+        Toast.makeText(getApplicationContext(),"Hola jugador", Toast.LENGTH_SHORT).show();
 
-        Button playButton =   findViewById(R.id.play);
+        Button playButton =   findViewById(R.id.playagain);
 
         playButton.setOnClickListener(this);
 
@@ -42,14 +42,13 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
                     mMediaPlayer.start();
                 }
             }});
-
     }
 
 
     public void onClick(View v){
         switch (v.getId()){
             //va de la activity de inicio a la activity de empezar a jugar
-            case R.id.play:
+            case R.id.playagain:
                 Intent intent = new Intent(this, PelotaRebota.class);
                 startActivity(intent);
                 mMediaPlayer.stop();

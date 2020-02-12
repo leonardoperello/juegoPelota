@@ -77,7 +77,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
     int puntaje = 0;
 
     // vidas
-    int canttVida = 3;
+    int canttVida = 1;
 
     TiempoVelPelota velPelota;
 
@@ -110,32 +110,26 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
         // cargar sonidos del juego
         piletaSonido = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
-        try {
             // Proporciona acceso a archivos externos
             AssetManager assetManager = context.getAssets();
             // Variable que sirve para leer archivos externos
             AssetFileDescriptor descriptor;
 
-            // Caega nuestros sonidos listos para usar
-            descriptor = assetManager.openFd("beep1.mp3");
-            sonido1ID = piletaSonido.load(descriptor, 0);
+            // Carga nuestros sonidos listos para usar
+            sonido1ID = piletaSonido.load(context, R.raw.beep1, 1);
 
-            descriptor = assetManager.openFd("beep2.ogg");
-            sonido2ID = piletaSonido.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("beep3.ogg");
-            sonido3ID = piletaSonido.load(descriptor, 0);
+            sonido2ID = piletaSonido.load(context, R.raw.beep2, 1);
 
-            descriptor = assetManager.openFd("loseLife.ogg");
-            vidaPerdidaID = piletaSonido.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("explode.ogg");
-            explocionID = piletaSonido.load(descriptor, 0);
+            sonido3ID = piletaSonido.load(context, R.raw.beep3,1);
 
-        } catch (IOException e) {
-            // Print an error message to the console
-            Log.e("error", "failed to load sound files");
-        }
+
+            vidaPerdidaID = piletaSonido.load(context, R.raw.loselife,1);
+
+
+            explocionID = piletaSonido.load(context, R.raw.explode,1);
+
 
         crearLadrilloYReiniciar();
 
@@ -240,7 +234,7 @@ public class LogicaPelotaRebota extends SurfaceView implements Runnable {
             }
             if(puntaje == 10) {
                 pausa = true;
-                Intent intent = new Intent(mContext, FinalLevel.class);
+                Intent intent = new Intent(mContext, JuegoTerminado.class);
                 mContext.startActivity(intent);
                 ((Activity) mContext).finish();
             }

@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FinalLevel"
+            android:name=".JuegoTerminado"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.level1" />
         <activity
