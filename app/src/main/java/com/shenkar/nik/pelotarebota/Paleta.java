@@ -72,7 +72,7 @@ public class Paleta {
     void reiniciar(int pantallaX, int pantallaY) {
         float alto = 20;
         x = pantallaX / 2;
-        float y = pantallaY - 20;
+        y = pantallaY - 20;
         rect = new RectF(x, y, x + anchoPaleta, y + alto);
 
         // Desplace el rectángulo agregando dx a sus coordenadas izquierda y derecha,

@@ -53,14 +53,6 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
                 startActivity(intent);
                 mMediaPlayer.stop();
                 break;
-
-           /*
-            case R.id.sound:
-                Intent intent2 = new Intent(this,soundActivity.class);
-                startActivity(intent2);
-                break;
-
-            */
         }
     }
 }

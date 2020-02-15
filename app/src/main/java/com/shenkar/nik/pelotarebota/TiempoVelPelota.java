@@ -26,15 +26,15 @@ public class TiempoVelPelota extends CountDownTimer {
     @Override
     public void onTick(long tiempoIntervalo) {
         if(dirY <0){
-            pelota.setVelocidadXY(pelota.getyVlo()-50);
+            pelota.setVelocidadXY(pelota.getyVlo()-25);
         }else{
-            pelota.setVelocidadXY(pelota.getyVlo()+50);
+            pelota.setVelocidadXY(pelota.getyVlo()+25);
         }
 
         if(dirX <0){
-            pelota.setVelocidadXY(pelota.getyVlo()-50);
+            pelota.setVelocidadXY(pelota.getyVlo()-25);
         }else{
-            pelota.setVelocidadXY(pelota.getyVlo()+50);
+            pelota.setVelocidadXY(pelota.getyVlo()+25);
         }
 
     }

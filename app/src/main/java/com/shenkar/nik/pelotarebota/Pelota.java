@@ -15,7 +15,7 @@ public class Pelota {
     Pelota(float x){
         //La pelota comienza viajando a 100 píxeles por segundo
         xVlo = x;
-        yVlo = -x;
+        yVlo = -200;
         //La pelota es colocada en el centro de la pantalla en la parte inferior
         //La pelota es de dimenciones 10x10 pixeles
         rect = new RectF();
