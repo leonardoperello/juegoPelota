@@ -46,14 +46,6 @@ public class Ladrillo {
     //cambia el estado de visibilidad del ladrillo
     void setVisible(){
         esVisible = false;
-      /*  if(!esVisible){
-            esVisible = true;
-        }
-        else{
-            esVisible = false;
-        }
-
-       */
 
     }
 

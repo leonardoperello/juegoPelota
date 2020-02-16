@@ -8,17 +8,15 @@ public class Pelota {
     private RectF rect;
     private float xVlo;
    volatile private float yVlo;
-    private float anchoPelota = 15;
-    private float altoPelota = 15;
+    private float anchoPelota = 17;
+    private float altoPelota = 17;
 
     //Constructor
     Pelota(float x){
         //La pelota comienza viajando a 100 píxeles por segundo
         xVlo = x;
         yVlo = -200;
-        //La pelota es colocada en el centro de la pantalla en la parte inferior
-        //La pelota es de dimenciones 10x10 pixeles
-        rect = new RectF();
+
     }
 
     RectF getRect(){
@@ -29,9 +27,15 @@ public class Pelota {
     float getyVlo(){
         return yVlo;
     }
+    float getxVlo(){
+        return xVlo;
+    }
 
-    void setVelocidadXY(float y){
-        //xVlo = x;
+    void setVelocidadX(float x){
+       xVlo = x;
+    }
+
+    void setVelocidadY(float y){
         yVlo = y;
     }
 
@@ -55,9 +59,6 @@ public class Pelota {
         xVlo = -xVlo;
     }
 
-    void setRandomX(){
-        Random gen = new Random();
-    }
 
     void actualizarY(float y){
         rect.bottom = y;
@@ -70,10 +71,9 @@ public class Pelota {
     }
 
     void reiniciar(int x, int y){
-        rect.left = x / 2;
-        rect.top = y - 20;
-        rect.right = x/2 + anchoPelota;
-        rect.bottom = y - 20  - altoPelota;
-        rect.offset(0,-50);
+        x = x / 2;
+        y = y - 70;
+        rect = new RectF(x,y, x + anchoPelota, y - altoPelota);
+
     }
 }

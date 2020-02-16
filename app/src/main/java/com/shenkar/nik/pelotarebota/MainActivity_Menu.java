@@ -10,10 +10,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class MainActivity_Menu extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity_Menu extends AppCompatActivity {
 
     MediaPlayer mMediaPlayer;
-
+   private Button sonido, jugar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +27,10 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
 
         Toast.makeText(getApplicationContext(),"Hola jugador", Toast.LENGTH_SHORT).show();
 
-        Button playButton =   findViewById(R.id.playagain);
-
-        playButton.setOnClickListener(this);
 
         // boton de sonido
-        Button soundButton = (Button) this.findViewById(R.id.sound);
-        soundButton.setOnClickListener(new View.OnClickListener(){
+        sonido = this.findViewById(R.id.sound);
+        sonido.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
                 if (mMediaPlayer.isPlaying()){
@@ -42,17 +39,16 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
                     mMediaPlayer.start();
                 }
             }});
-    }
 
+        jugar =  this.findViewById(R.id.playagain);
+        jugar.setOnClickListener(new View.OnClickListener(){
 
-    public void onClick(View v){
-        switch (v.getId()){
-            //va de la activity de inicio a la activity de empezar a jugar
-            case R.id.playagain:
-                Intent intent = new Intent(this, PelotaRebota.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_Menu.this,PelotaRebota.class);
                 startActivity(intent);
                 mMediaPlayer.stop();
-                break;
-        }
+            }});
+
     }
+
 }

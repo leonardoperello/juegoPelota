@@ -28,18 +28,13 @@ public class Paleta {
     float topeDerecho;
 
     //constructor de la paleta
-    Paleta(int pantallaX, int pantallaY) {
+    Paleta(int pantallaX) {
         anchoPaleta = 130;
-        float alturaPaleta = 20;
-        x = pantallaX / 2;
-        y = pantallaY - 20;
-        rect = new RectF(x, y, x + anchoPaleta, y + alturaPaleta);
-        rect.offset(-50, -50);
 
         topeDerecho = pantallaX;
 
         // velocidad de la paleta en pixel
-        velocidadPaleta = 550;
+        velocidadPaleta = 800;
 
     }
 
@@ -49,7 +44,7 @@ public class Paleta {
     }
 
     //change/set if the paddale is going left or else
-    void setMovmentState(int estado) {
+    void setMovimiento(int estado) {
         posicionPaleta = estado;
     }
 
@@ -71,12 +66,10 @@ public class Paleta {
 
     void reiniciar(int pantallaX, int pantallaY) {
         float alto = 20;
-        x = pantallaX / 2;
-        y = pantallaY - 20;
+        x = (pantallaX / 2) - 50;
+        y = pantallaY - 60;
         rect = new RectF(x, y, x + anchoPaleta, y + alto);
 
-        // Desplace el rectángulo agregando dx a sus coordenadas izquierda y derecha,
-        // y agregando dy a sus coordenadas superior e inferior.
-        rect.offset(-50, -50);
+
     }
 }
