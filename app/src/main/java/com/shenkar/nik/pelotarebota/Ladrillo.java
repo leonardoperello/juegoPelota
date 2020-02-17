@@ -2,6 +2,7 @@ package com.shenkar.nik.pelotarebota;
 import android.graphics.RectF;
 
 public class Ladrillo {
+
     private RectF rect;
     private boolean esVisible;
     private char color;
@@ -17,7 +18,6 @@ public class Ladrillo {
                 fila * alto +relleno,
                 columna * ancho + ancho - relleno,
                 fila * alto + alto - relleno);
-
     }
 
 
@@ -46,15 +46,6 @@ public class Ladrillo {
     //cambia el estado de visibilidad del ladrillo
     void setVisible(){
         esVisible = false;
-      /*  if(!esVisible){
-            esVisible = true;
-        }
-        else{
-            esVisible = false;
-        }
-
-       */
-
     }
 
 }

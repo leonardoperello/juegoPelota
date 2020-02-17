@@ -12,6 +12,7 @@ public class TiempoVelPelota extends CountDownTimer {
 
     private float dirY;
     private float dirX;
+
     TiempoVelPelota(Context c, long tiempoTotal, long tiempoIntervalo, Pelota p){
         super(tiempoTotal,tiempoIntervalo);
         pelota=p;
@@ -24,27 +25,27 @@ public class TiempoVelPelota extends CountDownTimer {
     }
 
     @Override
+    // Devolución de llamada disparada a intervalos regulares.
     public void onTick(long tiempoIntervalo) {
         if(dirY <0){
-            pelota.setVelocidadXY(pelota.getyVlo()-50);
+            pelota.setVelocidadY(pelota.getyVlo()-25);
         }else{
-            pelota.setVelocidadXY(pelota.getyVlo()+50);
+            pelota.setVelocidadY(pelota.getyVlo()+25);
         }
 
         if(dirX <0){
-            pelota.setVelocidadXY(pelota.getyVlo()-50);
+            pelota.setVelocidadX(pelota.getxVlo()-5);
         }else{
-            pelota.setVelocidadXY(pelota.getyVlo()+50);
+            pelota.setVelocidadX(pelota.getxVlo()+5);
         }
 
     }
 
     @Override
+    // Devolución de llamada activada cuando se acabe el tiempo
     public void onFinish() {
         Intent intent = new Intent(context, JuegoTerminado.class);
         context.startActivity(intent);
         this.cancel();
     }
-
-
 }

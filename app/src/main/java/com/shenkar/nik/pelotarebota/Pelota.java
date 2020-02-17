@@ -7,42 +7,41 @@ import java.util.Random;
 public class Pelota {
     private RectF rect;
     private float xVlo;
-   volatile private float yVlo;
-    private float anchoPelota = 15;
-    private float altoPelota = 15;
+    volatile private float yVlo;
+    private float anchoPelota = 17;
+    private float altoPelota = 17;
 
     //Constructor
     Pelota(float x){
         //La pelota comienza viajando a 100 píxeles por segundo
         xVlo = x;
-        yVlo = -x;
-        //La pelota es colocada en el centro de la pantalla en la parte inferior
-        //La pelota es de dimenciones 10x10 pixeles
-        rect = new RectF();
+        yVlo = -200;
     }
 
     RectF getRect(){
         return rect;
     }
 
-
     float getyVlo(){
         return yVlo;
     }
-
-    void setVelocidadXY(float y){
-        //xVlo = x;
-        yVlo = y;
+    float getxVlo(){
+        return xVlo;
     }
 
+    void setVelocidadX(float x){
+        xVlo = x;
+    }
+
+    void setVelocidadY(float y){
+        yVlo = y;
+    }
 
     void actualizar(long fps){
         rect.left = rect.left + (xVlo  / fps);
         rect.top = rect.top + (yVlo / fps);
         rect.right = rect.left + anchoPelota;
         rect.bottom = rect.top + altoPelota;
-
-
     }
 
     //Metodo para que la pelota rebote en direccion al eje y; y no se salga del rango de la pantalla
@@ -53,10 +52,6 @@ public class Pelota {
     //Metodo para que la pelota rebote en direccion al eje x; y no se salga del rango de la pantalla
     void contrarioX(){
         xVlo = -xVlo;
-    }
-
-    void setRandomX(){
-        Random gen = new Random();
     }
 
     void actualizarY(float y){
@@ -70,10 +65,8 @@ public class Pelota {
     }
 
     void reiniciar(int x, int y){
-        rect.left = x / 2;
-        rect.top = y - 20;
-        rect.right = x/2 + anchoPelota;
-        rect.bottom = y - 20  - altoPelota;
-        rect.offset(0,-50);
+        x = x / 2;
+        y = y - 70;
+        rect = new RectF(x,y, x + anchoPelota, y - altoPelota);
     }
 }

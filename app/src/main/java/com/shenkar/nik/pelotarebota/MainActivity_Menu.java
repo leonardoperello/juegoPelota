@@ -10,10 +10,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class MainActivity_Menu extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity_Menu extends AppCompatActivity  {
 
     MediaPlayer mMediaPlayer;
 
+    private Button sonido, jugar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,27 +26,35 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.start();
 
-        Toast.makeText(getApplicationContext(),"Hola jugador", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Hola jugador", Toast.LENGTH_SHORT).show();
 
-        Button playButton =   findViewById(R.id.playagain);
-
-        playButton.setOnClickListener(this);
 
         // boton de sonido
-        Button soundButton = (Button) this.findViewById(R.id.sound);
-        soundButton.setOnClickListener(new View.OnClickListener(){
+        sonido = this.findViewById(R.id.sound);
+        sonido.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                if (mMediaPlayer.isPlaying()){
+                if (mMediaPlayer.isPlaying()) {
                     mMediaPlayer.pause();
-                }else{
+                } else {
                     mMediaPlayer.start();
                 }
-            }});
+            }
+        });
+
+        jugar = this.findViewById(R.id.playagain);
+        jugar.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_Menu.this, PelotaRebota.class);
+                startActivity(intent);
+                mMediaPlayer.stop();
+            }
+        });
     }
 
 
-    public void onClick(View v){
+     /*   public void onClick(View v){
         switch (v.getId()){
             //va de la activity de inicio a la activity de empezar a jugar
             case R.id.playagain:
@@ -62,5 +71,5 @@ public class MainActivity_Menu extends AppCompatActivity implements View.OnClick
 
             */
         }
-    }
-}
+
+

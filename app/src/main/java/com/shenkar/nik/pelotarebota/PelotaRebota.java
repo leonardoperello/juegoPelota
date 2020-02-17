@@ -2,20 +2,20 @@ package com.shenkar.nik.pelotarebota;
 
 import android.app.Activity;
 import android.graphics.Point;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.shenkar.nik.pelotarebota.R;
-
 
 public class PelotaRebota extends Activity {
 
     public static LogicaPelotaRebota logicaPelotaRebota;
+
     MediaPlayer mMediaPlayer;
+
     int length;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,21 +24,25 @@ public class PelotaRebota extends Activity {
 
 
         mMediaPlayer = new MediaPlayer();
+
        /* mMediaPlayer = MediaPlayer.create(this, R.raw.deadmau5_fall);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();*/
 
-
-
         //detectar la resolución de la pantalla del dispositivo y responder a ella
+
         Display visualizacion = getWindowManager().getDefaultDisplay();
+
         Point tamanio = new Point();
+
         visualizacion.getSize(tamanio);
-        //initialize gameView and set it as a view
+
+        //inicializar la vista del juego y setearla a la vista
         logicaPelotaRebota = new LogicaPelotaRebota(this,tamanio.x,tamanio.y);
         setContentView(logicaPelotaRebota);
     }
+
     @Override
     protected void onDestroy() {
         //other codes
