@@ -41,7 +41,7 @@ public class Paleta {
     }
 
     //change/set if the paddale is going left or else
-    void setMovmentState(int estado) {
+    void setMovimiento(int estado) {
         posicionPaleta = estado;
     }
 
@@ -63,12 +63,8 @@ public class Paleta {
 
     void reiniciar(int pantallaX, int pantallaY) {
         float alto = 20;
-        x = pantallaX / 2;
-        float y = pantallaY - 20;
+        x = pantallaX / 2 - 30;
+        float y = pantallaY - 60;
         rect = new RectF(x, y, x + anchoPaleta, y + alto);
-
-        // Desplace el rectángulo agregando dx a sus coordenadas izquierda y derecha,
-        // y agregando dy a sus coordenadas superior e inferior.
-        rect.offset(-50, -50);
     }
 }

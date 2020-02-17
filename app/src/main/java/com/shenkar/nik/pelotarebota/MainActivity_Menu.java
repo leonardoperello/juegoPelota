@@ -52,26 +52,5 @@ public class MainActivity_Menu extends AppCompatActivity  {
             }
         });
     }
-
-        jugar =  this.findViewById(R.id.playagain);
-        jugar.setOnClickListener(new View.OnClickListener(){
-
-     /*   public void onClick(View v){
-        switch (v.getId()){
-            //va de la activity de inicio a la activity de empezar a jugar
-            case R.id.playagain:
-                Intent intent = new Intent(this, PelotaRebota.class);
-                startActivity(intent);
-                mMediaPlayer.stop();
-            }});
-
-           /*
-            case R.id.sound:
-                Intent intent2 = new Intent(this,soundActivity.class);
-                startActivity(intent2);
-                break;
-
-            */
-        }
-
+}
 

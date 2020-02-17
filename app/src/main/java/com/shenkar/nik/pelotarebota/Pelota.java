@@ -65,7 +65,7 @@ public class Pelota {
     }
 
     void reiniciar(int x, int y){
-        x = x / 2;
+        x = x / 2 ;
         y = y - 70;
         rect = new RectF(x,y, x + anchoPelota, y - altoPelota);
     }
