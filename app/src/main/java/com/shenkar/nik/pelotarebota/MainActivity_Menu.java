@@ -53,6 +53,8 @@ public class MainActivity_Menu extends AppCompatActivity  {
         });
     }
 
+        jugar =  this.findViewById(R.id.playagain);
+        jugar.setOnClickListener(new View.OnClickListener(){
 
      /*   public void onClick(View v){
         switch (v.getId()){
@@ -61,7 +63,7 @@ public class MainActivity_Menu extends AppCompatActivity  {
                 Intent intent = new Intent(this, PelotaRebota.class);
                 startActivity(intent);
                 mMediaPlayer.stop();
-                break;
+            }});
 
            /*
             case R.id.sound:

@@ -24,7 +24,7 @@ public class GameOver extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        botonPlay = (Button) findViewById(R.id.playagain);
+        botonPlay = findViewById(R.id.playagain);
 
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
